@@ -1,19 +1,19 @@
 <resources>
+    <!-- App name, activity names, and buttons -->
     <string name="app_name">Sunshine</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_settings_activity">Settings Activity</string>
     <string name="action_settings">Settings</string>
     <string name="action_refresh">Refresh</string>
 
+    <!-- Fake forecast strings -->
     <string name="date_text">Today, June 24</string>
     <string name="high_weather_text">21\u00B0</string>
     <string name="low_weather_text">8\u00B0</string>
     <string name="current_weather">Cloudy</string>
-
     <string name="list_item_forecast">Today — Sunny — 88 / 63</string>
-    <string name="title_activity_detail">DetailActivity</string>
 
-    <string name="hello_world">Hello world! Hello world! Hello world! Hello world! Hello world!</string>
-
-    <!-- fragment_detail.xml / individual day weather strings -->
+    <!-- fragment_detail.pref_general / individual day weather strings -->
     <string name="detail_day">Tomorrow</string>
     <string name="detail_date">June 19</string>
     <string name="detail_max">18\u00B0</string>
