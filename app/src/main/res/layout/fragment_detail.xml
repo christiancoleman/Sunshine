@@ -1,12 +1,143 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="enfieldacademy.sunshine.DetailActivityFragment">
+    tools:context="enfieldacademy.sunshine.fragments.DetailActivityFragment">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/detail_day"
+        android:text="@string/detail_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/detail_date"
+        android:text="@string/detail_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="20sp"
+        android:layout_below="@id/detail_day"/>
+
+    <LinearLayout
+        android:id="@+id/min_max_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/detail_date">
+
+        <TextView
+            android:id="@+id/detail_max"
+            android:text="@string/detail_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textSize="125sp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/detail_min"
+            android:text="@string/detail_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textSize="75sp"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/min_max_linear_layout"
+        android:layout_toEndOf="@id/min_max_linear_layout"
+        android:layout_below="@id/detail_date"
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables"> <!-- :( should I have done this? -->
+
+        <ImageView
+            android:id="@+id/detail_image"
+            android:src="@drawable/cloudy_large"
+            android:contentDescription="@string/detail_description"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/detail_description"
+            android:text="@string/detail_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/detail_humidity_label"
+        android:text="@string/detail_humidity_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_below="@id/min_max_linear_layout"/>
+
+    <TextView
+        android:id="@+id/detail_humidity_value"
+        android:text="@string/detail_humidity_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_below="@id/min_max_linear_layout"
+        android:layout_toEndOf="@id/detail_humidity_label"
+        android:layout_toRightOf="@id/detail_humidity_label"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/detail_pressure_label"
+        android:text="@string/detail_pressure_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_below="@id/detail_humidity_label"/>
+
+    <TextView
+        android:id="@+id/detail_pressure_value"
+        android:text="@string/detail_pressure_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_below="@id/detail_humidity_label"
+        android:layout_toRightOf="@id/detail_pressure_label"
+        android:layout_toEndOf="@id/detail_pressure_label"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/detail_wind_label"
+        android:text="@string/detail_wind_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_below="@id/detail_pressure_label"/>
+
+    <TextView
+        android:id="@+id/detail_wind_value"
+        android:text="@string/detail_wind_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_below="@id/detail_pressure_label"
+        android:layout_toRightOf="@id/detail_wind_label"
+        android:layout_toEndOf="@id/detail_wind_label"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"/>
 
 </RelativeLayout>

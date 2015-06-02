@@ -1,4 +1,4 @@
-package enfieldacademy.sunshine;
+package enfieldacademy.sunshine.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -31,13 +31,16 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import enfieldacademy.sunshine.R;
+import enfieldacademy.sunshine.activities.DetailActivity;
+
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class ForecastFragment extends Fragment {
 
-    public static final String INTENT_KEY = "";
+    public static final String INTENT_KEY = "FORECAST_DETAIL_INTENT";
 
     private final String TAG = "MainActivityFragment";
 

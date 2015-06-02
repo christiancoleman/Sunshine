@@ -11,6 +11,19 @@
     <string name="list_item_forecast">Today — Sunny — 88 / 63</string>
     <string name="title_activity_detail">DetailActivity</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello world! Hello world! Hello world! Hello world! Hello world!</string>
+
+    <!-- fragment_detail.xml / individual day weather strings -->
+    <string name="detail_day">Tomorrow</string>
+    <string name="detail_date">June 19</string>
+    <string name="detail_max">18\u00B0</string>
+    <string name="detail_min">12\u00B0</string>
+    <string name="detail_description">Clear</string>
+    <string name="detail_humidity_label">Humidity:</string>
+    <string name="detail_humidity_value">81\u00B0</string>
+    <string name="detail_pressure_label">Pressure:</string>
+    <string name="detail_pressure_value">1017 hPa</string>
+    <string name="detail_wind_label">Wind:</string>
+    <string name="detail_wind_value">2 km/h NW</string>
 
 </resources>
