@@ -4,7 +4,8 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_settings_activity">Settings Activity</string>
     <string name="action_settings">Settings</string>
-    <string name="action_refresh">Refresh</string>
+    <string name="action_view_preferred_location">View Preferred Location On Map</string>
+    <string name="action_share">Share</string>
 
     <!-- Fake forecast strings -->
     <string name="date_text">Today, June 24</string>
@@ -25,5 +26,13 @@
     <string name="detail_pressure_value">1017 hPa</string>
     <string name="detail_wind_label">Wind:</string>
     <string name="detail_wind_value">2 km/h NW</string>
+
+    <!-- Settings strings / stored preferences (SharedPreferences) -->
+    <string name="pref_location_label">Location</string>
+    <string name="pref_location_key" translatable="false">location</string>
+    <string name="pref_location_default" translatable="false">44203</string>
+    <string name="pref_units_label">Units</string>
+    <string name="pref_units_key">units</string>
+    <string name="pref_units_default">imperial</string>
 
 </resources>

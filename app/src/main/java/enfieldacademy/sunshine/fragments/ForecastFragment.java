@@ -1,10 +1,15 @@
 package enfieldacademy.sunshine.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +50,7 @@ public class ForecastFragment extends Fragment {
     private final String TAG = "MainActivityFragment";
 
     private ArrayAdapter<String> forecastAdapter;
+    private ShareActionProvider mShareActionProvider;
 
     public ForecastFragment() {
     }
@@ -56,17 +62,29 @@ public class ForecastFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+
+        String zipcodePrefKey = getString(R.string.pref_location_key);
+        String zipcodePrefValue = getString(R.string.pref_location_default);
+        String usersZipcode = sharedPreferences.getString(zipcodePrefKey, zipcodePrefValue);
+
+        String unitsPrefKey = getString(R.string.pref_units_key);
+        String unitsPrefValue = getString(R.string.pref_units_default);
+        String usersUnits = sharedPreferences.getString(unitsPrefKey, unitsPrefValue);
+
+        FetchWeatherTask weatherTask = new FetchWeatherTask(usersZipcode, usersUnits);
+        weatherTask.execute();
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.forecastfragment, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_refresh){
-            FetchWeatherTask weatherTask = new FetchWeatherTask("44203");
-            weatherTask.execute();
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -75,13 +93,6 @@ public class ForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ArrayList<String> forecasts = new ArrayList<>();
-        forecasts.add(0, "Today — Sunny — 88 / 63");
-        forecasts.add(1, "Tomorrow — Foggy — 70 / 46");
-        forecasts.add(2, "Weds — Cloudy — 72 / 63");
-        forecasts.add(3, "Thurs — Rainy — 64 / 51");
-        forecasts.add(4, "Fri — Foggy — 70 / 46");
-        forecasts.add(5, "Sat — Sunny — 76 / 88");
-
         forecastAdapter =
                 new ArrayAdapter<>(getActivity(),
                                             R.layout.list_item_forecast,
@@ -91,8 +102,12 @@ public class ForecastFragment extends Fragment {
         ListView lv = (ListView) rootView.findViewById(R.id.listview_forecast);
         lv.setAdapter(forecastAdapter);
 
-        FetchWeatherTask weatherTask = new FetchWeatherTask("44203");
-        weatherTask.execute();
+        /*SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        String prefKey = getString(R.string.pref_location_key);
+        String prefValue = getString(R.string.pref_location_default);
+        String usersZipcode = sharedPreferences.getString(prefKey, prefValue);
+        FetchWeatherTask weatherTask = new FetchWeatherTask(usersZipcode);
+        weatherTask.execute();*/
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,11 +133,11 @@ public class ForecastFragment extends Fragment {
         private BufferedReader reader = null;
         private String forecastJsonStr = null;
 
-        FetchWeatherTask(String postalcode){
+        FetchWeatherTask(String postalcode, String units){//, String units){
             try {
                 Uri.Builder uriBuilder = new Uri.Builder();
                 uriBuilder.appendQueryParameter(POSTAL_CODE_QUERY, postalcode);
-                uriBuilder.appendQueryParameter(UNITS_QUERY, "metric");
+                uriBuilder.appendQueryParameter(UNITS_QUERY, units);
                 uriBuilder.appendQueryParameter(NUM_OF_DAYS_QUERY , "7");
                 url = new URL(BASE_WEATHER_URL + uriBuilder.toString());
             }catch (MalformedURLException e){
