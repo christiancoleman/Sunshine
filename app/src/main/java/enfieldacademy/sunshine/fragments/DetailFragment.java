@@ -1,9 +1,8 @@
 package enfieldacademy.sunshine.fragments;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
@@ -56,7 +55,6 @@ public class DetailFragment extends Fragment {
 
     private Intent getShareIntent(){
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        Uri shareDataUri = Uri.parse(mForecast + " #SunshineApp");
         shareIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, mForecast + " #Sunshine");
