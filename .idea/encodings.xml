@@ -2,12 +2,18 @@
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/FullTestSuite.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/TestFetchWeatherTask.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestDb.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestPractice.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestProvider.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestUriMatcher.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestUtilities.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestWeatherContract.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/utils/PollingCheck.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/enfieldacademy/sunshine/FetchWeatherTask.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/enfieldacademy/sunshine/data/WeatherContract.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/enfieldacademy/sunshine/data/WeatherDbHelper.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/enfieldacademy/sunshine/data/WeatherProvider.java" charset="windows-1252" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
