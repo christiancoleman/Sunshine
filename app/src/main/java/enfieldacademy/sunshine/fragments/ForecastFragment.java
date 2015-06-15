@@ -1,6 +1,5 @@
 package enfieldacademy.sunshine.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -8,7 +7,6 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
 import android.text.format.Time;
 import android.util.Log;
@@ -49,7 +47,7 @@ public class ForecastFragment extends Fragment {
 
     private final String TAG = "MainActivityFragment";
 
-    private ArrayAdapter<String> forecastAdapter;
+    private ArrayAdapter<String> mForecastAdapter;
     private ShareActionProvider mShareActionProvider;
 
     public ForecastFragment() {
@@ -93,14 +91,14 @@ public class ForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ArrayList<String> forecasts = new ArrayList<>();
-        forecastAdapter =
+        mForecastAdapter =
                 new ArrayAdapter<>(getActivity(),
                                             R.layout.list_item_forecast,
                                             R.id.list_item_forecast_textview,
                                             forecasts);
 
         ListView lv = (ListView) rootView.findViewById(R.id.listview_forecast);
-        lv.setAdapter(forecastAdapter);
+        lv.setAdapter(mForecastAdapter);
 
         /*SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String prefKey = getString(R.string.pref_location_key);
@@ -113,7 +111,7 @@ public class ForecastFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent detailActivityIntent = new Intent(getActivity(), DetailActivity.class);
-                detailActivityIntent.putExtra(INTENT_KEY, forecastAdapter.getItem(position));
+                detailActivityIntent.putExtra(INTENT_KEY, mForecastAdapter.getItem(position));
                 startActivity(detailActivityIntent);
             }
         });
@@ -201,9 +199,9 @@ public class ForecastFragment extends Fragment {
             for(String forecast : weatherForecasts){
                 forecastList.add(forecast);
             }
-            forecastAdapter.clear();
+            mForecastAdapter.clear();
             for(String forecast : forecastList) {
-                forecastAdapter.add(forecast);
+                mForecastAdapter.add(forecast);
             }
         }
 

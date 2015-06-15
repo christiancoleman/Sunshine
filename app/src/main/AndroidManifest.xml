@@ -34,6 +34,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity"/>
         </activity>
+        <provider
+            android:authorities="enfieldacademy.sunshine"
+            android:name=".data.WeatherProvider"/>
     </application>
 
 </manifest>

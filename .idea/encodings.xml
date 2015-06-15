@@ -4,7 +4,6 @@
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/FullTestSuite.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/TestFetchWeatherTask.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestDb.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestPractice.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestProvider.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestUriMatcher.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/androidTest/java/enfieldacademy/sunshine/data/TestUtilities.java" charset="windows-1252" />
