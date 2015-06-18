@@ -18,6 +18,7 @@ package enfieldacademy.sunshine;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -26,6 +27,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import enfieldacademy.sunshine.data.WeatherContract.WeatherEntry;
+import enfieldacademy.sunshine.data.WeatherProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,7 +45,7 @@ import java.util.Vector;
 
 public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
-    private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
+    private final String TAG = FetchWeatherTask.class.getSimpleName();
 
     private ArrayAdapter<String> mForecastAdapter;
     private final Context mContext;
@@ -85,7 +87,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
             high = (high * 1.8) + 32;
             low = (low * 1.8) + 32;
         } else if (!unitType.equals(mContext.getString(R.string.pref_units_metric))) {
-            Log.d(LOG_TAG, "Unit type not found: " + unitType);
+            Log.d(TAG, "Unit type not found: " + unitType);
         }
 
         // For presentation, assume the user doesn't care about tenths of a degree.
@@ -107,9 +109,13 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
      */
     long addLocation(String locationSetting, String cityName, double lat, double lon) {
         // Students: First, check if the location with this city name exists in the db
+        WeatherProvider weatherProvider = new WeatherProvider();
+        Long id = -1L;
+        Cursor c = weatherProvider.query(null,null,null,null,null);
+        
         // If it exists, return the current ID
         // Otherwise, insert it using the content resolver and the base URI
-        return -1;
+        return id;
     }
 
     /*
@@ -287,13 +293,13 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 //                } while (cur.moveToNext());
 //            }
 
-            Log.d(LOG_TAG, "FetchWeatherTask Complete. " + cVVector.size() + " Inserted");
+            Log.d(TAG, "FetchWeatherTask Complete. " + cVVector.size() + " Inserted");
 
             String[] resultStrs = convertContentValuesToUXFormat(cVVector);
             return resultStrs;
 
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
+            Log.e(TAG, e.getMessage(), e);
             e.printStackTrace();
         }
         return null;
@@ -306,6 +312,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
         if (params.length == 0) {
             return null;
         }
+        Log.d(TAG, "params = " + params[0]);
         String locationQuery = params[0];
 
         // These two need to be declared outside the try/catch
@@ -339,11 +346,16 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
                     .build();
 
             URL url = new URL(builtUri.toString());
+            Log.d(TAG, "url = " + url);
 
             // Create the request to OpenWeatherMap, and open the connection
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
+            try {
+                urlConnection.connect();
+            } catch (Exception e){
+                Log.d(TAG, "Error - Cause: No internet");
+            }
 
             // Read the input stream into a String
             InputStream inputStream = urlConnection.getInputStream();
@@ -368,8 +380,8 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
             }
             forecastJsonStr = buffer.toString();
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error ", e);
-            // If the code didn't successfully get the weather data, there's no point in attemping
+            Log.e(TAG, "Error getting weather data ", e);
+            // If the code didn't successfully get the weather data, there's no point in attempting
             // to parse it.
             return null;
         } finally {
@@ -380,7 +392,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
                 try {
                     reader.close();
                 } catch (final IOException e) {
-                    Log.e(LOG_TAG, "Error closing stream", e);
+                    Log.e(TAG, "Error closing stream", e);
                 }
             }
         }
@@ -388,7 +400,7 @@ public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
         try {
             return getWeatherDataFromJson(forecastJsonStr, locationQuery);
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
+            Log.e(TAG, e.getMessage(), e);
             e.printStackTrace();
         }
         // This will only happen if there was an error getting or parsing the forecast.
